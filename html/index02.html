@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>word GAME</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+  </head>
+  <body>
+    <div id="wrap">
+      <h1>
+        <span class="main">WORD GAME</span>
+      </h1>
+      <div id="suggestWord"></div>
+      <div class="inputBox">
+        <input type="text" id="typing" />
+      </div>
+    </div>
+  </body>
+  <script>
+    const words = `당신의 그늘이 얼마나 아늑한지 몰랐죠
+어릴적엔 미워 그림자 취급을 했었죠술에 취한 당신의 발자국
+귓가에 들릴때면 자는 척하며 방문을 잠궜죠
+혹시라도 약이 될까 하루가
+끝나면 지친 입가에 털어 넣으시던 약주가
+되려 고독함을 덧냈어
+잠겨진 문 앞에서 황소처럼 성냈어
+삶이 너무 고되서 집안 언저리에서
+도둑처럼 보석같은 눈물을 몰래 훔치던
+그 모습을 본 후에야 내가 느낀 후회가
+뼈가 저리도록 아픔으로 다가와
+세월을 속일 수 없어 주머니 속에 감춘
+내 방파제가 되준 주름지고 거친 손을
+이제 꼭 잡을께요 나의 위대한 그대여
+난 당신때문에 하늘을 봐요 나의 그대여`;
+    const wordList = words.split(" ");
+    console.log(wordList);
+    const suggestWord = document.querySelector("#suggestWord");
+    const typing = document.querySelector("#typing");
+    let count = 0;
+    let randomTxt = wordList[Math.floor(Math.random() * wordList.length)];
+    suggestWord.textContent = randomTxt;
+    typing.addEventListener("keyup", function (e) {
+      //console.log(e);
+      if (e.key === "Enter") {
+        if (typing.value === randomTxt) {
+          randomTxt = wordList[Math.floor(Math.random() * wordList.length)];
+          suggestWord.textContent = randomTxt;
+          typing.value = "";
+          count++;
+        } else if (typing.value !== randomTxt) {
+          alert(count + "번만에 틀렸습니다.");
+        }
+      }
+    });
+  </script>
+</html>
